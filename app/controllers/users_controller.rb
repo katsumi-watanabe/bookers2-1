@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.new(user_params)
+    @user = User.find(params[:id])
   end
 
   def update
