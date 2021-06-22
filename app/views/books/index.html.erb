@@ -16,7 +16,8 @@
 	  <th>introduction</th>
 	  <th><%= current_user.introduction %></th>
   </tr>
-</tbody></table>
+  </tbody>
+</table>
 
 <div class="row">
   <%= link_to"", edit_user_path(current_user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
@@ -50,17 +51,20 @@
           </tr>
         </thead>
         <tbody>
-      <tr>
-        <td><a href="/users/163">
-          <img class="attachment user profile_image" src="/attachments/234711a602887e30bd025ac445ffffe58e9ba1a8/store/fill/50/50/1c14e75f04c8489458817f85971a318b11ea8c688f6dee763f421d210cbb/profile_image">
-</a>        </td>
-        <td><a class="book_285" href="/books/285">あふぁd</a></td>
-        <td>fだあf</td>
-      </tr>
-      </tr>
-  </tbody>
-</table>
+        <% @books.each do |book| %>
+          <tr>
+            <td>
+              <%= link_to user_path(book.user) do %>
+              <%= attachment_image_tag book.user, :profile_image, size: "40x40", format: 'jpeg',fallback: "no_image.jpg" %>
+              <% end %>
+            </td>
+            <td><%= link_to book.title, book_path(book.id) %></td>
+            <td><%= book.body %></td>
+          </tr>
+        </tbody>
+        <% end %>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-      </main>
+</main>
